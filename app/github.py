@@ -55,6 +55,6 @@ async def is_from_github(request: Request):
     meta = await get_meta()
     whitelist = get_hook_whitelist(meta)
     pprint(src_ip)
-    pprint(whitelist)
+    pprint(request.client.host)
     if not ip_is_hook(src_ip, whitelist):
         raise Exception
