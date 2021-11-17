@@ -3,9 +3,14 @@ from fastapi import Request
 from httpx import AsyncClient
 from ipaddress import ip_address, ip_network
 
-from util import find, some
-from models import GithubModel, GithubMetaModel
-from services import SERVICES
+if __name__ == "__main__":
+    from util import find, some
+    from models import GithubModel, GithubMetaModel
+    from services import SERVICES
+else:
+    from .util import find, some
+    from .models import GithubModel, GithubMetaModel
+    from .services import SERVICES
 
 from git.repo import Repo
 
