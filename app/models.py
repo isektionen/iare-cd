@@ -5,168 +5,197 @@ from typing import Any, List, Optional
 from pydantic import BaseModel
 
 
-class Config(BaseModel):
-    content_type: str
-    insecure_ssl: str
-    url: str
-
-
-class LastResponse(BaseModel):
-    code: Any
-    status: str
-    message: Any
-
-
-class Hook(BaseModel):
-    type: str
-    id: int
+class Author(BaseModel):
+    email: str
     name: str
-    active: bool
-    events: List[str]
-    config: Config
-    updated_at: str
-    created_at: str
+    username: str
+
+
+class Committer(BaseModel):
+    email: str
+    name: str
+    username: str
+
+
+class Commit(BaseModel):
+    added: List[str]
+    author: Author
+    committer: Committer
+    distinct: bool
+    id: str
+    message: str
+    modified: List[str]
+    removed: List
+    timestamp: str
+    tree_id: str
     url: str
-    test_url: str
-    ping_url: str
-    deliveries_url: str
-    last_response: LastResponse
+
+
+class Author1(BaseModel):
+    email: str
+    name: str
+    username: str
+
+
+class Committer1(BaseModel):
+    email: str
+    name: str
+    username: str
+
+
+class HeadCommit(BaseModel):
+    added: List[str]
+    author: Author1
+    committer: Committer1
+    distinct: bool
+    id: str
+    message: str
+    modified: List[str]
+    removed: List
+    timestamp: str
+    tree_id: str
+    url: str
+
+
+class Pusher(BaseModel):
+    email: str
+    name: str
 
 
 class Owner(BaseModel):
-    login: str
-    id: int
-    node_id: str
     avatar_url: str
-    gravatar_id: str
-    url: str
-    html_url: str
+    email: str
+    events_url: str
     followers_url: str
     following_url: str
     gists_url: str
+    gravatar_id: str
+    html_url: str
+    id: int
+    login: str
+    name: str
+    node_id: str
+    organizations_url: str
+    received_events_url: str
+    repos_url: str
+    site_admin: bool
     starred_url: str
     subscriptions_url: str
-    organizations_url: str
-    repos_url: str
-    events_url: str
-    received_events_url: str
     type: str
-    site_admin: bool
-
-
-class License(BaseModel):
-    key: str
-    name: str
-    spdx_id: str
     url: str
-    node_id: str
 
 
 class Repository(BaseModel):
-    id: int
-    node_id: str
-    name: str
-    full_name: str
-    private: bool
-    owner: Owner
-    html_url: str
-    description: str
-    fork: bool
-    url: str
-    forks_url: str
-    keys_url: str
-    collaborators_url: str
-    teams_url: str
-    hooks_url: str
-    issue_events_url: str
-    events_url: str
+    archive_url: str
+    archived: bool
     assignees_url: str
-    branches_url: str
-    tags_url: str
     blobs_url: str
-    git_tags_url: str
-    git_refs_url: str
-    trees_url: str
-    statuses_url: str
-    languages_url: str
-    stargazers_url: str
+    branches_url: str
+    clone_url: str
+    collaborators_url: str
+    comments_url: str
+    commits_url: str
+    compare_url: str
+    contents_url: str
     contributors_url: str
+    created_at: int
+    default_branch: str
+    deployments_url: str
+    description: Any
+    disabled: bool
+    downloads_url: str
+    events_url: str
+    fork: bool
+    forks: int
+    forks_count: int
+    forks_url: str
+    full_name: str
+    git_commits_url: str
+    git_refs_url: str
+    git_tags_url: str
+    git_url: str
+    has_downloads: bool
+    has_issues: bool
+    has_pages: bool
+    has_projects: bool
+    has_wiki: bool
+    homepage: Any
+    hooks_url: str
+    html_url: str
+    id: int
+    issue_comment_url: str
+    issue_events_url: str
+    issues_url: str
+    keys_url: str
+    labels_url: str
+    language: str
+    languages_url: str
+    license: Any
+    master_branch: str
+    merges_url: str
+    milestones_url: str
+    mirror_url: Any
+    name: str
+    node_id: str
+    notifications_url: str
+    open_issues: int
+    open_issues_count: int
+    owner: Owner
+    private: bool
+    pulls_url: str
+    pushed_at: int
+    releases_url: str
+    size: int
+    ssh_url: str
+    stargazers: int
+    stargazers_count: int
+    stargazers_url: str
+    statuses_url: str
     subscribers_url: str
     subscription_url: str
-    commits_url: str
-    git_commits_url: str
-    comments_url: str
-    issue_comment_url: str
-    contents_url: str
-    compare_url: str
-    merges_url: str
-    archive_url: str
-    downloads_url: str
-    issues_url: str
-    pulls_url: str
-    milestones_url: str
-    notifications_url: str
-    labels_url: str
-    releases_url: str
-    deployments_url: str
-    created_at: str
-    updated_at: str
-    pushed_at: str
-    git_url: str
-    ssh_url: str
-    clone_url: str
     svn_url: str
-    homepage: str
-    size: int
-    stargazers_count: int
-    watchers_count: int
-    language: str
-    has_issues: bool
-    has_projects: bool
-    has_downloads: bool
-    has_wiki: bool
-    has_pages: bool
-    forks_count: int
-    mirror_url: Any
-    archived: bool
-    disabled: bool
-    open_issues_count: int
-    license: License
-    allow_forking: bool
-    is_template: bool
-    topics: List[str]
-    visibility: str
-    forks: int
-    open_issues: int
+    tags_url: str
+    teams_url: str
+    trees_url: str
+    updated_at: str
+    url: str
     watchers: int
-    default_branch: str
+    watchers_count: int
 
 
 class Sender(BaseModel):
-    login: str
-    id: int
-    node_id: str
     avatar_url: str
-    gravatar_id: str
-    url: str
-    html_url: str
+    events_url: str
     followers_url: str
     following_url: str
     gists_url: str
+    gravatar_id: str
+    html_url: str
+    id: int
+    login: str
+    node_id: str
+    organizations_url: str
+    received_events_url: str
+    repos_url: str
+    site_admin: bool
     starred_url: str
     subscriptions_url: str
-    organizations_url: str
-    repos_url: str
-    events_url: str
-    received_events_url: str
     type: str
-    site_admin: bool
+    url: str
 
 
 class GithubModel(BaseModel):
-    zen: str
-    hook_id: int
-    hook: Hook
+    after: str
+    base_ref: Any
+    before: str
+    commits: List[Commit]
+    compare: str
+    created: bool
+    deleted: bool
+    forced: bool
+    head_commit: HeadCommit
+    pusher: Pusher
+    ref: str
     repository: Repository
     sender: Sender
 
