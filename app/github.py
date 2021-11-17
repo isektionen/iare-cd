@@ -2,6 +2,7 @@ from typing import List
 from fastapi import Request
 from httpx import AsyncClient
 from ipaddress import ip_address, ip_network
+from pprint import pprint
 
 if __name__ == "__main__":
     from util import find, some
@@ -53,5 +54,7 @@ async def is_from_github(request: Request):
     src_ip = ip_address(request.client.host)
     meta = await get_meta()
     whitelist = get_hook_whitelist(meta)
+    pprint(src_ip)
+    pprint(whitelist)
     if not ip_is_hook(src_ip, whitelist):
         raise Exception
