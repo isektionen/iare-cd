@@ -1,10 +1,16 @@
 from fastapi import FastAPI
 from fastapi.params import Depends
 
-from github import is_from_github, is_main
-from services import get_service
-from shell import create_shell
-from models import GithubModel
+if __name__ == "__main__":
+    from github import is_from_github, is_main
+    from services import get_service
+    from shell import create_shell
+    from models import GithubModel
+else:
+    from .github import is_from_github, is_main
+    from .services import get_service
+    from .shell import create_shell
+    from .models import GithubModel
 
 
 def create_app():
