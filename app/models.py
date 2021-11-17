@@ -42,7 +42,7 @@ class Repository(BaseModel):
     name: str
     full_name: str
     private: bool
-    owner: Owner
+    owner: Optional[Owner] = None
     html_url: str
     description: str
     fork: bool
