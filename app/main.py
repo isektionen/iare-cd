@@ -42,6 +42,6 @@ async def online():
 async def process(data: GithubModel, service: str):
     service = get_service(service)
     if is_main(data) and service:
-        execute = create_shell()
+        execute = create_shell(service)
         print("initiating CD..")
         execute(service["build-command"])
