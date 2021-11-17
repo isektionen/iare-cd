@@ -3,17 +3,18 @@ from pathlib import PurePath
 from os import getcwd
 
 
-def create_shell():
+def create_shell(service):
     cwd = getcwd()
 
     path = PurePath(cwd)
-    if path.name == "iare-cms":
+    service_path = PurePath(service["cwd"])
+    if path.name == service_path.name:
         return lambda x: subprocess.Popen(
             x, stdin=subprocess.DEVNULL, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL, shell=True
         )
     else:
         return lambda x: subprocess.Popen(
-            f"cd iare-cms; {x}",
+            f"cd {service['cwd']}; {x}",
             stdin=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             stdout=subprocess.DEVNULL,

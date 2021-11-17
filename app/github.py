@@ -14,7 +14,7 @@ else:
 
 from git.repo import Repo
 
-ALLOW_ALL = True
+ALLOW_ALL = False
 
 
 def is_main(payload: GithubModel):
