@@ -12,6 +12,6 @@ def create_shell(service):
         return lambda x: subprocess.Popen(x, shell=True)
     else:
         return lambda x: subprocess.Popen(
-            f"cd {service['cwd']}; {x}",
+            f"cd; cd {service['cwd']}; {x}",
             shell=True,
         )

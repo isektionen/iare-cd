@@ -9,7 +9,7 @@ SERVICES = [
         "name": "iare-cms",
         "repo": "https://github.com/isektionen/iare-cms",
         "to-path": "/iare-cms",
-        "cwd": "/usr/ubuntu/iare-cms",
+        "cwd": "iare-cms/",
         "build-command": "git restore .;git pull;yarn;yarn build;pm2 restart iare-cms;",
     },
 ]
